@@ -14,7 +14,7 @@ export class ScraperController {
         metaTags.each((_, tag) => {
             const property = $(tag).attr('property');
             const content = $(tag).attr('content');
-            data[property.replace('og', '')] = content;
+            data[property.replace('og:', '').replace(':', '_')] = content;
         });
         return data;
     }
