@@ -1,8 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import axios from 'axios';
 import * as cheerio from 'cheerio';
-
-
 @Controller('scraper')
 export class ScraperController {
     @Get('/opengraph')
