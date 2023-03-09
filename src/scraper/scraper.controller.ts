@@ -1,13 +1,14 @@
 import { Controller, Get, Query } from '@nestjs/common';
+import axios from 'axios';
 import * as cheerio from 'cheerio';
-import ky from 'ky';
+
 
 @Controller('scraper')
 export class ScraperController {
-    @Get('opengraph')
+    @Get('/opengraph')
     async getOpenGraph(@Query('url') url: string) {
-        const response = await ky.get(url);
-        const $ = cheerio.load(await response.text());
+        const response = await axios.get(url);
+        const $ = cheerio.load(await response.data);
         const metaTags = $('meta[property^="og:"]');
         const data = {}
         metaTags.each((_, tag) => {
